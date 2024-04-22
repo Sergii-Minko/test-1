@@ -79,13 +79,13 @@ fetchReviews(urlapi).then(reviews => {
   });
 });
 
-// reviewlist.addEventListener('click', function (event) {
-//   event.preventDefault();
-//   let targetElement = event.target;
-//   let children = this.children;
-//   Array.from(children).forEach(function (child) {
-//     if (child.contains(targetElement)) {
-//       child.classList.toggle('click');
-//     }
-//   });
-// });
+reviewlist.addEventListener('click', function (event) {
+  event.preventDefault();
+  let targetElement = event.target;
+  let children = this.children;
+  Array.from(children).forEach(function (child) {
+    if (child.contains(targetElement)) {
+      child.classList.toggle('click');
+    }
+  });
+});
