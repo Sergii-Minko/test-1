@@ -2,7 +2,8 @@ export const createReviewsList = reviews => {
   return reviews
     .map(
       reviewData => ` 
-     <li class=" reviews-item-container card-reviews swiper-slide" id="${reviewData._id}">
+     <li class=" reviews-item-container swiper-slide" id="${reviewData._id}">
+     <div class="card-reviews">
      
        <div class="reviews-item item-details">
            <img
@@ -24,6 +25,7 @@ export const createReviewsList = reviews => {
             src="${reviewData.avatar_url}"
             loading="lazy"
           />
+        </div>
         </div>
      
     </li>
