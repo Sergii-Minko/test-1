@@ -97,4 +97,3 @@ reviewlist.addEventListener('click', function (event) {
     }
   });
 });
-window.addEventListener('wheel', handleScroll, { passive: true });
