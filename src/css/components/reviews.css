@@ -154,14 +154,14 @@
 }
 /* photo slider */
 
-/* .card-reviews {
+.card-reviews {
   position: absolute;
   transform: translate(-50%, -50%);
   background: transparent;
   overflow: hidden;
   transition-timing-function: cubic-bezier(0.57, 0.21, 0.69, 1.25);
 }
-
+/*
 .card-reviews .img-big-avatar,
 .card-reviews .item-details {
   width: 100%;
