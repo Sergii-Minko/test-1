@@ -154,7 +154,7 @@
 }
 /* photo slider */
 
-.card-reviews {
+/* .card-reviews {
   position: absolute;
   transform: translate(-50%, -50%);
   background: transparent;
@@ -206,7 +206,7 @@
   .card-reviews:hover .img-big-avatar {
     left: 0;
   }
-}
+} */
 
 /* end of slider */
 
