@@ -1,0 +1,69 @@
+@import url('modern-normalize/modern-normalize.css');
+@import url('@fontsource/inter-tight/latin-500.css');
+@import url('@fontsource/inter-tight/latin-600.css');
+
+:root {
+  --font-family: 'Inter Tight', sans-serif;
+  --background: #1c1d20;
+  --button-text: #ed3b44;
+  --main-text: #fafafa;
+  --cards: #242527;
+  --arrow: #3b3b3b;
+  --transition-pattern: 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-family);
+  color: var(--main-text);
+  background-color: var(--background);
+}
+/* Reset styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
