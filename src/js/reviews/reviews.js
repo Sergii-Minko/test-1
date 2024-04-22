@@ -8,10 +8,10 @@ import 'swiper/css/bundle';
 const urlapi = 'https://portfolio-js.b.goit.study/api/reviews';
 let reviewsswiper;
 const reviewlist = document.querySelector('.reviews-list');
-const swiperContainer = document.querySelector('.swiper-reviews');
+// const swiperContainer = document.querySelector('.swiper-reviews');
 const prevbtnEl = document.querySelector('.js-btn-prev');
 const nextbtnEl = document.querySelector('.js-btn-next');
-let theEnd = false;
+prevbtnEl.classList.add('swiper-button-disabled');
 
 const fetchReviews = async url => {
   try {
@@ -46,20 +46,21 @@ fetchReviews(urlapi).then(reviews => {
   reviewsswiper = new Swiper('.swiper-reviews', {
     modules: [Navigation],
     direction: 'horizontal',
-    observer: true,
-    observeParents: true,
-    slidesPerView: 1,
-    spaceBetween: 18,
     keyboard: {
       enabled: true,
       onlyInViewport: true,
       pageUpDown: true,
       tabKeys: true,
     },
-
+    slidesPerView: 1,
+    autoplay: false,
     grabCursor: true,
 
     breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 18,
+      },
       768: {
         slidesPerView: 2,
         spaceBetween: 16,
@@ -69,40 +70,50 @@ fetchReviews(urlapi).then(reviews => {
         spaceBetween: 16,
       },
     },
-    navigation: {
-      nextEl: '.js-btn-next',
-      prevEl: '.js-btn-prev',
+    on: {
+      slideChange: () => {
+        updateButtonsState();
+      },
     },
   });
 });
 
-swiperContainer.addEventListener('keydown', event => {
-  if (event.keyCode === 9) {
-    if (isInViewport(swiperContainer)) {
-      event.preventDefault();
-      if (!reviewsswiper.isEnd && !theEnd) {
-        reviewsswiper.slideNext();
-        if (reviewsswiper.isEnd) {
-          prevbtnEl.focus();
-          theEnd = true;
-        }
-      } else if (theEnd && !reviewsswiper.isBeginning) {
-        reviewsswiper.slidePrev();
-        if (reviewsswiper.isBeginning) {
-          nextbtnEl.focus();
-          theEnd = false;
-        }
-      }
-    }
+const updateButtonsState = () => {
+  if (reviewsswiper.isBeginning) {
+    prevbtnEl.disabled = true;
+    prevbtnEl.classList.add('swiper-button-disabled');
+  } else {
+    prevbtnEl.disabled = false;
+    prevbtnEl.classList.remove('swiper-button-disabled');
   }
-});
-export const isInViewport = element => {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
+
+  if (reviewsswiper.isEnd) {
+    nextbtnEl.disabled = true;
+    nextbtnEl.classList.add('swiper-button-disabled');
+  } else {
+    nextbtnEl.disabled = false;
+    nextbtnEl.classList.remove('swiper-button-disabled');
+  }
 };
+
+nextbtnEl.addEventListener('click', function (event) {
+  event.preventDefault();
+  reviewsswiper.slideNext();
+  updateButtonsState();
+});
+prevbtnEl.addEventListener('click', function (event) {
+  event.preventDefault();
+  reviewsswiper.slidePrev();
+  updateButtonsState();
+});
+
+// reviewlist.addEventListener('click', function (event) {
+//   event.preventDefault();
+//   let targetElement = event.target;
+//   let children = this.children;
+//   Array.from(children).forEach(function (child) {
+//     if (child.contains(targetElement)) {
+//       child.classList.toggle('click');
+//     }
+//   });
+// });
